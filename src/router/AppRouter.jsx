@@ -7,7 +7,6 @@ import {Contacts} from "../pages/Contacts/Contacts.jsx";
 import {Tariffs} from "../pages/Tariffs/Tariffs.jsx";
 import {LoginLayout} from "../layouts/LoginLayout/LoginLayout.jsx";
 import {Login} from "../pages/Login/Login.jsx";
-import {Register} from "../pages/Register/Register";
 
 const layouts = [
   {
@@ -48,10 +47,6 @@ const layouts = [
         path: '/login',
         component: <Login />
       },
-      {
-        path: '/login/new-user',
-        component: <Register />
-      }
     ],
   },
 ]

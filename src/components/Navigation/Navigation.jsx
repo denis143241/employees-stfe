@@ -10,14 +10,22 @@ import {
   NavigationWrapper,
   SignInButton
 } from "./Navigation.styled.jsx";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const resolvedUrls = ['/contacts', '/tariffs']
 
 export const Navigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn'))
   const [isShowSignInBtn, setIsShowSignInBtn] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
+
+  const signInHandler = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem('isLoggedIn')
+    }
+    navigate('/login')
+  }
 
   useEffect(() => {
     if (resolvedUrls.includes(location.pathname)) {
@@ -43,7 +51,7 @@ export const Navigation = () => {
           </NavigationLeftSide>
           <NavigationRightSide>
             {isShowSignInBtn && (
-              <SignInButton>
+              <SignInButton onClick={signInHandler}>
                 {isLoggedIn ? 'Выход' : 'Вход'}
               </SignInButton>
             )}
